@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { weatherConditions } from "./weatherConditions";
 
-function songData() {
+export function songData() {
   return [
     {
       id: uuidv4(),

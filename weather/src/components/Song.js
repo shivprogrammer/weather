@@ -1,13 +1,13 @@
 import React from "react";
-import { SongContainer } from "../styledComponents/StyledSong";
+import { StyledSong } from "../styledComponents/StyledSong";
 
-const Song = () => {
+const Song = ({song}) => {
   return (
-    <SongContainer>
-      <h1>Photo</h1>
-      <h1>Song</h1>
-      <h1>Artist</h1>
-    </SongContainer>
+    <StyledSong>
+      <img src={song.art} />
+      <h2>{song.name}</h2>
+      <h3>{song.artist}</h3>
+    </StyledSong>
   )
 }
 

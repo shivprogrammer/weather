@@ -1,9 +1,9 @@
 export const weatherConditions = {
-  THUNDERSTORM: "thunderstorm",
-  DRIZZLE: "drizzle",
-  RAIN: "rain",
-  SNOW: "snow",
-  ATMOSPHERE: "atmosphere",
-  CLEAR: "clear",
-  CLOUDS: "clouds"
+  THUNDERSTORM: "Thunderstorm",
+  DRIZZLE: "Drizzle",
+  RAIN: "Rain",
+  SNOW: "Snow",
+  ATMOSPHERE: "Atmosphere",
+  CLEAR: "Clear",
+  CLOUDS: "Clouds"
 };

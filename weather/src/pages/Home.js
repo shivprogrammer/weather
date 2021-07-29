@@ -6,8 +6,9 @@ import { css } from "@emotion/react";
 import { pageAnimation } from "../utils/animations";
 import WeatherInfo from "../components/WeatherInfo";
 import ClipLoader from "react-spinners/ClipLoader";
+import MusicContainer from "../components/MusicContainer";
 
-const Weather = () => {
+const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [latitude, setLatitude] = useState(undefined);
   const [longitude, setLongitude] = useState(undefined);
@@ -48,14 +49,19 @@ const Weather = () => {
     <>
       {isLoading
         ? <ClipLoader color={"aqua"} loading={isLoading} css={loaderStyle} />
-        : (<motion.div variants={pageAnimation} initial="hidden" animate="show">
-            <WeatherInfo
-              location={localWeatherData.name}
-              tempData={localWeatherData.main.temp}
-              condition={localWeatherData.weather[0].main}
-              iconData={localWeatherData.weather[0].icon}
-            />
-          </motion.div>)}
+        : (
+          <>
+            <motion.div variants={pageAnimation} initial="hidden" animate="show">
+              <WeatherInfo
+                location={localWeatherData.name}
+                tempData={localWeatherData.main.temp}
+                condition={localWeatherData.weather[0].main}
+                iconData={localWeatherData.weather[0].icon}
+              />
+            </motion.div>
+            <MusicContainer condition={localWeatherData.weather[0].main} />
+          </>
+        )}
     </>
   )
 }
@@ -65,4 +71,4 @@ const loaderStyle = css`
   margin: 0 auto;
 `;
 
-export default Weather;
+export default Home;

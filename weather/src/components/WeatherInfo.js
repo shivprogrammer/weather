@@ -10,7 +10,7 @@ const WeatherInfo = ({location, tempData, condition, iconData}) => {
       <h1>{location}</h1>
       <h2>{temp}</h2>
       <h3>{condition}</h3>
-      <img src={icon} alt="Weather Icon" />
+      <img src={icon} alt="Home Icon" />
     </>
   )
 }

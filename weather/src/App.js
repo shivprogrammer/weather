@@ -1,13 +1,11 @@
-import Weather from "./containers/Weather"
-import Music from "./containers/Music";
+import Home from "./pages/Home"
 import { GlobalStyles } from "./styledComponents/GlobalStyles";
 
 function App() {
   return (
     <div className="App">
       <GlobalStyles />
-      <Weather />
-      <Music />
+      <Home />
     </div>
   );
 }
