@@ -23,6 +23,24 @@ export function songData() {
     },
     {
       id: uuidv4(),
+      name: "Roses n Flames",
+      artist: "C Y G N",
+      art: "https://chillhop.com/wp-content/uploads/2021/02/d12927eedcc2f5afba2ab049a4a1ea46c2266ae3-1024x1024.jpg",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=14985",
+      color: ["#C781D4", "#1F4372"],
+      weather: [weatherConditions.DRIZZLE, weatherConditions.RAIN, weatherConditions.CLOUDS, weatherConditions.ATMOSPHERE, weatherConditions.SNOW]
+    },
+    {
+      id: uuidv4(),
+      name: "On The Moon",
+      artist: "SwuM",
+      art: "https://chillhop.com/wp-content/uploads/2021/03/74d62bc9370a68e440c1b98eaf650344f0a7faea-1024x1024.jpg",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=15237",
+      color: ["#AB6E2D", "#2F3938"],
+      weather: [weatherConditions.THUNDERSTORM, weatherConditions.DRIZZLE, weatherConditions.RAIN, weatherConditions.CLOUDS, weatherConditions.ATMOSPHERE, weatherConditions.SNOW]
+    },
+    {
+      id: uuidv4(),
       name: "Splendour",
       artist: "Aarigod",
       art: "https://chillhop.com/wp-content/uploads/2021/02/7f102bdde417f6ead9a120b2b931449e5c12b4da-1024x1024.jpg",

@@ -4,10 +4,13 @@ export const PlayControl = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
-  width: 30%;
+  padding: 1rem 1rem 5rem 1rem;
+  width: 10%;
   svg {
     cursor: pointer;
+  }
+  svg:hover {
+    fill: #DA4567
   }
 `;
 
@@ -31,5 +34,8 @@ export const TimeControl = styled.div`
   }
   p {
     padding: 1rem;
+  }
+  @media screen and (max-width: 768px) {
+    width: 90%;
   }
 `;

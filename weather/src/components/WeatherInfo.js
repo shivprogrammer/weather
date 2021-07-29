@@ -8,8 +8,8 @@ const WeatherInfo = ({location, tempData, condition, iconData}) => {
 
   return (
     <StyledWeather>
-      <h1>{location}</h1>
       <h2>{temp}°F {condition}</h2>
+      <h1>{location}</h1>
       <img src={icon} alt="Home Icon" />
     </StyledWeather>
   )

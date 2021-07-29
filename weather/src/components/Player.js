@@ -83,7 +83,7 @@ const Player = ({ songOptions }) => {
         </TimeControl>
         <PlayControl>
           <ChevronLeftIcon onClick={previousSong}/>
-          {isPlaying ? <PauseIcon onClick={pauseSong} /> : <PlayArrowIcon onClick={playSong} /> }
+          {isPlaying ? <PauseIcon fontSize="large" onClick={pauseSong} /> : <PlayArrowIcon fontSize="large" onClick={playSong} /> }
           <ChevronRightIcon onClick={nextSong} />
         </PlayControl>
         <audio
