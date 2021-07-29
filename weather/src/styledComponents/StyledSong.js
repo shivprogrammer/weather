@@ -18,6 +18,15 @@ export const StyledSong = styled.div`
   img {
     border-radius: 50%;
     width: 20%;
+    animation: ${props => props.isPlaying && `rotation 5s infinite linear`}
+  }
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
   }
   @media screen and (max-width: 768px) {
     img {

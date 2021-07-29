@@ -8,6 +8,7 @@ export const PlayControl = styled.div`
   width: 10%;
   svg {
     cursor: pointer;
+    color: gainsboro;
   }
   svg:hover {
     fill: #DA4567

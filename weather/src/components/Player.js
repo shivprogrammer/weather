@@ -32,6 +32,11 @@ const Player = ({ songOptions }) => {
     const length = event.target.duration;
     const percentage = Math.round((Math.round(time) / Math.round(length)) * 100);
     setSongTime({...songTime, currentTime: time, songLength: length, animationPercentage: percentage});
+    if (percentage === 100) {
+      const newIndex = (songOptions.findIndex(song => song.id === currentSong.id) + 1) % songOptions.length;
+      setCurrentSong(songOptions[newIndex]);
+      setIsPlaying(false);
+    }
   }
 
   const formatTime = (time) => {
@@ -70,7 +75,7 @@ const Player = ({ songOptions }) => {
 
   return (
     <>
-      <Song song={currentSong} />
+      <Song song={currentSong} isPlaying={isPlaying} />
       <PlayerContainer>
         <TimeControl>
           <p>{formatTime(songTime.currentTime)}</p>
@@ -87,7 +92,7 @@ const Player = ({ songOptions }) => {
           <p>{formatTime(songTime.songLength)}</p>
         </TimeControl>
         <PlayControl>
-          <ChevronLeftIcon onClick={previousSong}/>
+          <ChevronLeftIcon colorPrimary="white" onClick={previousSong}/>
           {isPlaying ? <PauseIcon fontSize="large" onClick={pauseSong} /> : <PlayArrowIcon fontSize="large" onClick={playSong} /> }
           <ChevronRightIcon onClick={nextSong} />
         </PlayControl>

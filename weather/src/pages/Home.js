@@ -11,6 +11,7 @@ import { songData } from "../utils/songData";
 import Input from "@material-ui/core/Input"
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
+import { StyledSearch } from "../styledComponents/StyledSearch";
 
 const Home = () => {
   const songs = songData();
@@ -96,12 +97,20 @@ const Home = () => {
         ? <ClipLoader color={"aqua"} loading={isLoading} css={loaderStyle} />
         : (
           <motion.div variants={pageAnimation} initial="hidden" animate="show">
-            <form style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", paddingRight: "1.5rem", paddingTop: "3rem"}}>
-              <IconButton onClick={submitSearchZipCode} type="submit">
-                <SearchIcon />
-              </IconButton>
-              <Input onChange={updateSearchInput} type="search" placeholder="   Zip Code Search" />
-            </form>
+            <StyledSearch>
+              <form style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", paddingRight: "1.5rem", paddingTop: "3rem"}}>
+                <IconButton onClick={submitSearchZipCode} type="submit">
+                  <SearchIcon />
+                </IconButton>
+                <Input
+                  onChange={updateSearchInput}
+                  type="search"
+                  placeholder="   Zip Code Search"
+                  color="primary"
+                  className="textfield"
+                />
+              </form>
+            </StyledSearch>
             <WeatherInfo
               location={weatherData.name}
               tempData={weatherData.main.temp}

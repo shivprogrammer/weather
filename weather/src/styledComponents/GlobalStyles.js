@@ -6,8 +6,11 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
-  h1, h2, h3 {
-    color: rgb(60, 60, 60);
+  body {
+    background: #1b1b1b;
+  }
+  h1, h2, h3, p {
+    color: gainsboro;
   }
   .track {
     background: lightblue;
