@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -62,6 +62,11 @@ const Player = ({ songOptions }) => {
     setCurrentSong(songOptions[newIndex]);
     setIsPlaying(false);
   }
+
+  useEffect(() => {
+    setCurrentSong(songOptions[0]);
+    setIsPlaying(false);
+  }, [songOptions])
 
   return (
     <>

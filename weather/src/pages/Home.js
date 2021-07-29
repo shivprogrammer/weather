@@ -73,6 +73,10 @@ const Home = () => {
       await axios.get(ZIP_CODE_URL)
         .then(res => {
           setWeatherData(res.data);
+          setCondition(res.data.weather[0].main);
+          setSongOptions(songs.filter(song => {
+            return song.weather.includes(condition);
+          }))
         })
         .catch(err => {
           console.log(err);
