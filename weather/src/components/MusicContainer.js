@@ -7,6 +7,7 @@ const MusicContainer = ({condition}) => {
   const [songs, setSongs] = useState(songData());
   const [songOptions, setSongOptions] = useState([]);
   const [currentSong, setCurrentSong] = useState(songs[0]);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     setSongOptions(songs.filter(song => {
@@ -23,7 +24,7 @@ const MusicContainer = ({condition}) => {
   return (
     <>
       <Song song={currentSong} />
-      <Player />
+      <Player song={currentSong} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
     </>
   )
 }

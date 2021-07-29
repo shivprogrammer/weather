@@ -50,17 +50,15 @@ const Home = () => {
       {isLoading
         ? <ClipLoader color={"aqua"} loading={isLoading} css={loaderStyle} />
         : (
-          <>
-            <motion.div variants={pageAnimation} initial="hidden" animate="show">
-              <WeatherInfo
-                location={localWeatherData.name}
-                tempData={localWeatherData.main.temp}
-                condition={localWeatherData.weather[0].main}
-                iconData={localWeatherData.weather[0].icon}
-              />
-            </motion.div>
+          <motion.div variants={pageAnimation} initial="hidden" animate="show">
+            <WeatherInfo
+              location={localWeatherData.name}
+              tempData={localWeatherData.main.temp}
+              condition={localWeatherData.weather[0].main}
+              iconData={localWeatherData.weather[0].icon}
+            />
             <MusicContainer condition={localWeatherData.weather[0].main} />
-          </>
+          </motion.div>
         )}
     </>
   )
