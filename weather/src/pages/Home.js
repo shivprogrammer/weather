@@ -8,15 +8,19 @@ import WeatherInfo from "../components/WeatherInfo";
 import ClipLoader from "react-spinners/ClipLoader";
 import Player from "../components/Player";
 import { songData } from "../utils/songData";
+import Input from "@material-ui/core/Input"
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from "@material-ui/icons/Search";
 
 const Home = () => {
   const songs = songData();
   const [isLoading, setIsLoading] = useState(true);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-  const [localWeatherData, setLocalWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState({});
   const [condition, setCondition] = useState(null);
   const [songOptions, setSongOptions] = useState([]);
+  const [zipCode, setZipCode] = useState("10036");
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((res) => {
@@ -33,7 +37,7 @@ const Home = () => {
         const LOCAL_LAT_LONG_WEATHER_ENDPOINT = `${WEATHER_API_BASE_URL}lat=${latitude}&lon=${longitude}&appid=06d2f8b149857e20bd8f265ca5d2e879`
         await axios.get(LOCAL_LAT_LONG_WEATHER_ENDPOINT)
           .then(res => {
-            setLocalWeatherData(res.data);
+            setWeatherData(res.data);
           })
           .catch(err => {
             console.log(err);
@@ -44,21 +48,43 @@ const Home = () => {
   }, [latitude, longitude])
 
   useEffect(() => {
-    if (localWeatherData && localWeatherData.weather && localWeatherData.weather[0] && localWeatherData.weather[0].main) {
-      setCondition(localWeatherData.weather[0].main);
+    if (weatherData && weatherData.weather && weatherData.weather[0] && weatherData.weather[0].main) {
+      setCondition(weatherData.weather[0].main);
     }
-  }, [localWeatherData])
+  }, [weatherData])
 
   useEffect(() => {
     if (condition) {
       setSongOptions(songs.filter(song => {
         return song.weather.includes(condition);
       }))
-      if (localWeatherData && localWeatherData.name && localWeatherData.main && localWeatherData.weather) {
+      if (weatherData && weatherData.name && weatherData.main && weatherData.weather) {
         setIsLoading(false);
       }
     }
-  }, [localWeatherData, condition])
+  }, [weatherData, condition])
+
+  const submitSearchZipCode = async (event) => {
+    event.preventDefault();
+    if (zipCode.length !== 5 || isNaN(zipCode)) {
+      alert("Please input a valid zip code");
+    } else {
+      const ZIP_CODE_URL = `${WEATHER_API_BASE_URL}zip=${zipCode},us&appid=06d2f8b149857e20bd8f265ca5d2e879`;
+      await axios.get(ZIP_CODE_URL)
+        .then(res => {
+          setWeatherData(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+          alert("Please input a valid zip code");
+        });
+    }
+  }
+
+  const updateSearchInput = (event) => {
+    event.preventDefault();
+    setZipCode(event.target.value);
+  }
 
   return (
     <>
@@ -66,11 +92,17 @@ const Home = () => {
         ? <ClipLoader color={"aqua"} loading={isLoading} css={loaderStyle} />
         : (
           <motion.div variants={pageAnimation} initial="hidden" animate="show">
+            <form style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", paddingRight: "1.5rem", paddingTop: "3rem"}}>
+              <IconButton onClick={submitSearchZipCode} type="submit">
+                <SearchIcon />
+              </IconButton>
+              <Input onChange={updateSearchInput} type="search" placeholder="   Zip Code Search" />
+            </form>
             <WeatherInfo
-              location={localWeatherData.name}
-              tempData={localWeatherData.main.temp}
+              location={weatherData.name}
+              tempData={weatherData.main.temp}
               condition={condition}
-              iconData={localWeatherData.weather[0].icon}
+              iconData={weatherData.weather[0].icon}
             />
             <Player songOptions={songOptions} />
           </motion.div>

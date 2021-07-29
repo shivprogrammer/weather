@@ -4,7 +4,8 @@ export const StyledWeather = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-evenly;
-  padding-top: 3rem;
-  //padding-top: 6rem 10rem 5rem 10rem;
-  //width: 50%;
+  padding-top: 1rem;
+  h1 {
+    font-family: Copperplate, fantasy;
+  }
 `;

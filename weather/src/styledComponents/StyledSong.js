@@ -8,9 +8,12 @@ export const StyledSong = styled.div`
   min-height: 60vh;
   h2 {
     padding: 3rem 1rem 1rem 1rem;
+    font-family: "Courier New", monospace;
   }
   h3 {
     font-size: 1rem;
+    color: grey;
+    font-family: "Courier New", monospace;
   }
   img {
     border-radius: 50%;
