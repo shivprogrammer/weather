@@ -4,14 +4,17 @@ export const PlayControl = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 1rem 1rem 5rem 1rem;
-  width: 10%;
+  padding: 1rem 1rem 8rem 1rem;
+  width: 20%;
   svg {
     cursor: pointer;
     color: gainsboro;
   }
   svg:hover {
     fill: #DA4567
+  }
+  @media screen and (max-width: 768px) {
+    width: 60%;
   }
 `;
 

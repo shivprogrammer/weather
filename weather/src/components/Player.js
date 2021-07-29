@@ -92,8 +92,8 @@ const Player = ({ songOptions }) => {
           <p>{formatTime(songTime.songLength)}</p>
         </TimeControl>
         <PlayControl>
-          <ChevronLeftIcon colorPrimary="white" onClick={previousSong}/>
-          {isPlaying ? <PauseIcon fontSize="large" onClick={pauseSong} /> : <PlayArrowIcon fontSize="large" onClick={playSong} /> }
+          <ChevronLeftIcon onClick={previousSong} />
+          {isPlaying ? <PauseIcon fontSize="large" onClick={pauseSong} /> : <PlayArrowIcon fontSize="large" onClick={playSong} />}
           <ChevronRightIcon onClick={nextSong} />
         </PlayControl>
         <audio

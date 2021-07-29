@@ -98,7 +98,7 @@ const Home = () => {
         : (
           <motion.div variants={pageAnimation} initial="hidden" animate="show">
             <StyledSearch>
-              <form style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", paddingRight: "1.5rem", paddingTop: "3rem"}}>
+              <form style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", paddingRight: "1.5rem", paddingTop: "3rem", paddingBottom: "2rem"}}>
                 <IconButton onClick={submitSearchZipCode} type="submit">
                   <SearchIcon />
                 </IconButton>

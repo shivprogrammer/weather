@@ -6,4 +6,8 @@
    
    ![Weather Music App](weather-music.png)
 
-### Your local weather and corresponding music vibe is loaded first, and you can also search for different zip codes and the music playlist will reflect the mood of those weather conditions!
+### Your local weather and corresponding music vibe is loaded first, and you can also search for different zip codes and the music playlist will reflect the mood of those weather conditions (mobile friendly too!):
+
+![Weather Music App Mobile](weather-music-mobile.png)
+
+
