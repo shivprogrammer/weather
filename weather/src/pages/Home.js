@@ -6,13 +6,17 @@ import { css } from "@emotion/react";
 import { pageAnimation } from "../utils/animations";
 import WeatherInfo from "../components/WeatherInfo";
 import ClipLoader from "react-spinners/ClipLoader";
-import MusicContainer from "../components/MusicContainer";
+import Player from "../components/Player";
+import { songData } from "../utils/songData";
 
 const Home = () => {
+  const songs = songData();
   const [isLoading, setIsLoading] = useState(true);
-  const [latitude, setLatitude] = useState(undefined);
-  const [longitude, setLongitude] = useState(undefined);
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
   const [localWeatherData, setLocalWeatherData] = useState({});
+  const [condition, setCondition] = useState(null);
+  const [songOptions, setSongOptions] = useState([]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((res) => {
@@ -40,10 +44,21 @@ const Home = () => {
   }, [latitude, longitude])
 
   useEffect(() => {
-    if (localWeatherData && localWeatherData.name && localWeatherData.main && localWeatherData.weather) {
-      setIsLoading(false);
+    if (localWeatherData && localWeatherData.weather && localWeatherData.weather[0] && localWeatherData.weather[0].main) {
+      setCondition(localWeatherData.weather[0].main);
     }
   }, [localWeatherData])
+
+  useEffect(() => {
+    if (condition) {
+      setSongOptions(songs.filter(song => {
+        return song.weather.includes(condition);
+      }))
+      if (localWeatherData && localWeatherData.name && localWeatherData.main && localWeatherData.weather) {
+        setIsLoading(false);
+      }
+    }
+  }, [localWeatherData, condition])
 
   return (
     <>
@@ -54,10 +69,10 @@ const Home = () => {
             <WeatherInfo
               location={localWeatherData.name}
               tempData={localWeatherData.main.temp}
-              condition={localWeatherData.weather[0].main}
+              condition={condition}
               iconData={localWeatherData.weather[0].icon}
             />
-            <MusicContainer condition={localWeatherData.weather[0].main} />
+            <Player songOptions={songOptions} />
           </motion.div>
         )}
     </>
