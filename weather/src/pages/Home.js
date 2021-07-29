@@ -14,7 +14,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import { StyledSearch } from "../styledComponents/StyledSearch";
 
 const Home = () => {
-  const songs = songData();
   const [isLoading, setIsLoading] = useState(true);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
@@ -35,7 +34,7 @@ const Home = () => {
   useEffect(() => {
     if (latitude && longitude) {
       async function getLatLongData() {
-        const LOCAL_LAT_LONG_WEATHER_ENDPOINT = `${WEATHER_API_BASE_URL}lat=${latitude}&lon=${longitude}&appid=06d2f8b149857e20bd8f265ca5d2e879`
+        const LOCAL_LAT_LONG_WEATHER_ENDPOINT = `${WEATHER_API_BASE_URL}lat=${latitude}&lon=${longitude}&appid=${process.env.WEATHER_API_KEY}`
         await axios.get(LOCAL_LAT_LONG_WEATHER_ENDPOINT)
           .then(res => {
             setWeatherData(res.data);
@@ -56,7 +55,7 @@ const Home = () => {
 
   useEffect(() => {
     if (condition) {
-      setSongOptions(songs.filter(song => {
+      setSongOptions(songData().filter(song => {
         return song.weather.includes(condition);
       }))
       if (weatherData && weatherData.name && weatherData.main && weatherData.weather) {
@@ -70,12 +69,12 @@ const Home = () => {
     if (zipCode.length !== 5 || isNaN(zipCode)) {
       alert("Please input a valid zip code");
     } else {
-      const ZIP_CODE_URL = `${WEATHER_API_BASE_URL}zip=${zipCode},us&appid=06d2f8b149857e20bd8f265ca5d2e879`;
+      const ZIP_CODE_URL = `${WEATHER_API_BASE_URL}zip=${zipCode},us&appid=${process.env.WEATHER_API_KEY}`;
       await axios.get(ZIP_CODE_URL)
         .then(res => {
           setWeatherData(res.data);
           setCondition(res.data.weather[0].main);
-          setSongOptions(songs.filter(song => {
+          setSongOptions(songData().filter(song => {
             return song.weather.includes(condition);
           }))
         })
