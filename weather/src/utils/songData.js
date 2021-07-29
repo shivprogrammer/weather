@@ -9,7 +9,7 @@ export function songData() {
       artist: "Screen Jazzmaster, Zmeyev",
       art: "https://chillhop.com/wp-content/uploads/2021/03/75adfe0661d06a9ea66d9c2e99b31e92ae450ebe-1024x1024.jpg",
       audio: "https://mp3.chillhop.com/serve.php/?mp3=16063",
-      color: ["#F2AD34", "#202019", "#202019"],
+      color: ["#F2AD34", "#202019"],
       weather: [weatherConditions.CLEAR]
     },
     {
@@ -27,7 +27,7 @@ export function songData() {
       artist: "Aarigod",
       art: "https://chillhop.com/wp-content/uploads/2021/02/7f102bdde417f6ead9a120b2b931449e5c12b4da-1024x1024.jpg",
       audio: "https://mp3.chillhop.com/serve.php/?mp3=13013",
-      color: ["#2E2B1D", "#536426"],
+      color: ["#536426", "#2E2B1D"],
       weather: [weatherConditions.THUNDERSTORM, weatherConditions.DRIZZLE, weatherConditions.RAIN, weatherConditions.CLOUDS, weatherConditions.ATMOSPHERE, weatherConditions.SNOW]
     },
   ];

@@ -4,7 +4,7 @@ import Song from "./Song";
 import { songData } from "../utils/songData";
 
 const MusicContainer = ({condition}) => {
-  const [songs, setSongs] = useState(songData());
+  const songs = songData();
   const [songOptions, setSongOptions] = useState([]);
   const [currentSong, setCurrentSong] = useState(songs[0]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -19,12 +19,18 @@ const MusicContainer = ({condition}) => {
     if (songOptions.length > 0) {
       setCurrentSong(songOptions[0]);
     }
-  }, [songOptions])
+  }, [condition, songOptions])
 
   return (
     <>
       <Song song={currentSong} />
-      <Player song={currentSong} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+      <Player
+        currentSong={currentSong}
+        setCurrentSong={setCurrentSong}
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        songOptions={songOptions}
+      />
     </>
   )
 }

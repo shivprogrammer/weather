@@ -9,4 +9,23 @@ export const GlobalStyles = createGlobalStyle`
   h1, h2, h3 {
     color: rgb(60, 60, 60);
   }
+  .track {
+    background: lightblue;
+    border-radius: 1rem;
+    margin-top: 1.045rem;
+    height: 1rem;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .animate-track {
+    background: rgb(204, 204, 204);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateX(0%);
+    pointer-events: none;
+  }
 `;

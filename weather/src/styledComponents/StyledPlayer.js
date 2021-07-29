@@ -23,8 +23,11 @@ export const TimeControl = styled.div`
   display: flex;
   width: 50%;
   input {
-    padding: 1rem 2rem;
+    padding: 1rem 0rem;
     width: 100%;
+    -webkit-appearance: none;
+    background: transparent;
+    cursor: pointer;
   }
   p {
     padding: 1rem;
