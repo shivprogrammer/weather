@@ -7,7 +7,7 @@ import { pageAnimation } from "../utils/animations";
 import WeatherInfo from "../components/WeatherInfo";
 import ClipLoader from "react-spinners/ClipLoader";
 
-const Home = () => {
+const Weather = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [latitude, setLatitude] = useState(undefined);
   const [longitude, setLongitude] = useState(undefined);
@@ -25,7 +25,7 @@ const Home = () => {
   useEffect(() => {
     if (latitude && longitude) {
       async function getLatLongData() {
-        const LOCAL_LAT_LONG_WEATHER_ENDPOINT = `${WEATHER_API_BASE_URL}lat=${latitude}&lon=${longitude}&appid=${process.env.WEATHER_API_KEY}`
+        const LOCAL_LAT_LONG_WEATHER_ENDPOINT = `${WEATHER_API_BASE_URL}lat=${latitude}&lon=${longitude}&appid=06d2f8b149857e20bd8f265ca5d2e879`
         await axios.get(LOCAL_LAT_LONG_WEATHER_ENDPOINT)
           .then(res => {
             setLocalWeatherData(res.data);
@@ -65,4 +65,4 @@ const loaderStyle = css`
   margin: 0 auto;
 `;
 
-export default Home;
+export default Weather;
