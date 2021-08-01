@@ -34,7 +34,7 @@ const Home = () => {
   useEffect(() => {
     if (latitude && longitude) {
       async function getLatLongData() {
-        const LOCAL_LAT_LONG_WEATHER_ENDPOINT = `${WEATHER_API_BASE_URL}lat=${latitude}&lon=${longitude}&appid=${process.env.WEATHER_API_KEY}`
+        const LOCAL_LAT_LONG_WEATHER_ENDPOINT = `${WEATHER_API_BASE_URL}lat=${latitude}&lon=${longitude}&appid=06d2f8b149857e20bd8f265ca5d2e879`
         await axios.get(LOCAL_LAT_LONG_WEATHER_ENDPOINT)
           .then(res => {
             setWeatherData(res.data);
@@ -69,7 +69,7 @@ const Home = () => {
     if (zipCode.length !== 5 || isNaN(zipCode)) {
       alert("Please input a valid zip code");
     } else {
-      const ZIP_CODE_URL = `${WEATHER_API_BASE_URL}zip=${zipCode},us&appid=${process.env.WEATHER_API_KEY}`;
+      const ZIP_CODE_URL = `${WEATHER_API_BASE_URL}zip=${zipCode},us&appid=06d2f8b149857e20bd8f265ca5d2e879`;
       await axios.get(ZIP_CODE_URL)
         .then(res => {
           setWeatherData(res.data);

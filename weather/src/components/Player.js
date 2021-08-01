@@ -8,6 +8,7 @@ import Song from "./Song";
 
 const Player = ({ songOptions }) => {
   const audioRef = useRef(null);
+  const [rain, setRain] = useState(null);
   const [currentSong, setCurrentSong] = useState(songOptions[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [songTime, setSongTime] = useState({
@@ -73,6 +74,25 @@ const Player = ({ songOptions }) => {
     setIsPlaying(false);
   }, [songOptions])
 
+
+  const backgroundRain = () => {
+    let numDrops = 0;
+    let rainDrops = "";
+    while (numDrops < 700) {
+      const randHunnid = Math.floor(Math.random() * 98 + 1);
+      const randFifteen = Math.floor(Math.random() * 14 + 1);
+      const randThree = Math.floor(Math.random() * 2 + 1);
+      const rand = Math.random();
+      numDrops += randThree;
+      rainDrops += '<div><img src="https://shivrandombucket.s3.amazonaws.com/raindrop.png" style="margin-left: '+ numDrops +'%; width: '+ randFifteen +'px; animation: rain 1.5s ease-in infinite '+ rand +'s;" alt="Raindrop" /></div>';
+    }
+    setRain(rainDrops);
+  }
+
+  useEffect(() => {
+    backgroundRain();
+  }, [])
+
   return (
     <>
       <Song song={currentSong} isPlaying={isPlaying} />
@@ -87,7 +107,7 @@ const Player = ({ songOptions }) => {
               onChange={dragHandler}
               type="range"
             />
-            <div style={trackAnimation} className="animate-track"></div>
+            <div style={trackAnimation} className="animate-track"/>
           </div>
           <p>{formatTime(songTime.songLength)}</p>
         </TimeControl>
@@ -103,6 +123,7 @@ const Player = ({ songOptions }) => {
           onLoadedMetadata={timeHandler}>
         </audio>
       </PlayerContainer>
+      <div dangerouslySetInnerHTML={{__html: rain}} />
     </>
   )
 }

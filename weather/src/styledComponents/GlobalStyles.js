@@ -31,4 +31,12 @@ export const GlobalStyles = createGlobalStyle`
     transform: translateX(0%);
     pointer-events: none;
   }
+  @keyframes rain {
+    from {
+      transform: translateY(-15000%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
 `;

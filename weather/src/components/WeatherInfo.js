@@ -11,7 +11,7 @@ const WeatherInfo = ({location, tempData, condition, iconData}) => {
   return (
     <>
       <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-        <motion.h1 variants={weatherInfoAnimation}>{location}</motion.h1>
+        <motion.h1 style={{fontFamily: "Copperplate, fantasy"}} variants={weatherInfoAnimation}>{location}</motion.h1>
       </div>
       <StyledWeather>
         <motion.h2 variants={weatherInfoAnimation}>{temp}°F {condition}</motion.h2>
