@@ -5,8 +5,9 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import PauseIcon from '@material-ui/icons/Pause';
 import { PlayerContainer, PlayControl, TimeControl } from "../styledComponents/StyledPlayer";
 import Song from "./Song";
+import { weatherConditions } from "../utils/weatherConditions"
 
-const Player = ({ songOptions }) => {
+const Player = ({ songOptions, condition }) => {
   const audioRef = useRef(null);
   const [rain, setRain] = useState(null);
   const [currentSong, setCurrentSong] = useState(songOptions[0]);
@@ -74,12 +75,22 @@ const Player = ({ songOptions }) => {
     setIsPlaying(false);
   }, [songOptions])
 
+  const backgroundDrizzle = () => {
+    let numDrops = 0;
+    let rainDrops = "";
+    while (numDrops < 700) {
+      const randFifteen = Math.floor(Math.random() * 14 + 1);
+      const rand = Math.random();
+      numDrops += randFifteen;
+      rainDrops += '<div><img src="https://shivrandombucket.s3.amazonaws.com/raindrop.png" style="margin-left: '+ numDrops +'%; width: '+ randFifteen +'px; animation: rain 2s ease-in infinite '+ rand +'s;" alt="Raindrop" /></div>';
+    }
+    setRain(rainDrops);
+  }
 
   const backgroundRain = () => {
     let numDrops = 0;
     let rainDrops = "";
     while (numDrops < 700) {
-      const randHunnid = Math.floor(Math.random() * 98 + 1);
       const randFifteen = Math.floor(Math.random() * 14 + 1);
       const randThree = Math.floor(Math.random() * 2 + 1);
       const rand = Math.random();
@@ -89,9 +100,27 @@ const Player = ({ songOptions }) => {
     setRain(rainDrops);
   }
 
+  const backgroundHeavyRain = () => {
+    let numDrops = 0;
+    let rainDrops = "";
+    while (numDrops < 1000) {
+      const randFifteen = Math.floor(Math.random() * 14 + 1);
+      const rand = Math.random();
+      numDrops++;
+      rainDrops += '<div><img src="https://shivrandombucket.s3.amazonaws.com/raindrop.png" style="margin-left: '+ numDrops +'%; width: '+ randFifteen +'px; animation: heavy-rain 0.5s ease-in infinite '+ rand +'s;" alt="Raindrop" /></div>';
+    }
+    setRain(rainDrops);
+  }
+
   useEffect(() => {
-    backgroundRain();
-  }, [])
+    if (condition === weatherConditions.RAIN) {
+      backgroundRain();
+    } else if (condition === weatherConditions.THUNDERSTORM) {
+      backgroundHeavyRain();
+    } else if (condition === weatherConditions.DRIZZLE) {
+      backgroundDrizzle();
+    }
+  }, [condition])
 
   return (
     <>
@@ -123,7 +152,8 @@ const Player = ({ songOptions }) => {
           onLoadedMetadata={timeHandler}>
         </audio>
       </PlayerContainer>
-      <div dangerouslySetInnerHTML={{__html: rain}} />
+      {(condition === weatherConditions.RAIN || condition === weatherConditions.DRIZZLE || condition === weatherConditions.THUNDERSTORM) && <div dangerouslySetInnerHTML={{__html: rain}} />}
+      {condition === weatherConditions.THUNDERSTORM && <div className="storm" />}
     </>
   )
 }

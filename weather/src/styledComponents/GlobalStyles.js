@@ -39,4 +39,35 @@ export const GlobalStyles = createGlobalStyle`
       transform: translateY(0);
     }
   }
+  @keyframes heavy-rain {
+    from {
+      transform: translateY(-15000%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  .storm {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    animation: flash 5s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes flash {
+    0%, 95%, 98% {
+      background-color: transparent
+    }
+    96%, 99%, 100% {
+      background-color: #fff
+    }
+  }
+
 `;

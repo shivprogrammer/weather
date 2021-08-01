@@ -116,7 +116,7 @@ const Home = () => {
               condition={condition}
               iconData={weatherData.weather[0].icon}
             />
-            <Player songOptions={songOptions} />
+            <Player songOptions={songOptions} condition={condition} />
           </motion.div>
         )}
     </>
