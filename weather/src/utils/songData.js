@@ -147,9 +147,32 @@ export function songData() {
       color: ["#AED1D1", "#6E8281"],
       weather: [weatherConditions.CLOUDS, weatherConditions.DRIZZLE, weatherConditions.CLEAR]
     },
+    {
+      id: uuidv4(),
+      name: "OdeToYou",
+      artist: "Flitz&Suppe",
+      art: "https://chillhop.com/wp-content/uploads/2020/07/557225b70aae2f746742574b43193ccef587d3a1-1024x1024.jpg",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=8769",
+      color: ["#AED1D1", "#6E8281"],
+      weather: [weatherConditions.CLOUDS, weatherConditions.DRIZZLE, weatherConditions.RAIN]
+    },
+    {
+      id: uuidv4(),
+      name: "Doin It",
+      artist: "Tesk",
+      art: "https://chillhop.com/wp-content/uploads/2020/07/97781364b9aa2c2896642b5f896761e07fd9894e-1024x1024.jpg",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=8927",
+      color: ["#B6B3B4", "#D5C0A7"],
+      weather: [weatherConditions.CLEAR]
+    },
+    {
+      id: uuidv4(),
+      name: "Snowland Sunset",
+      artist: "Stan Forebee, The Field Tapes, Josh Jacobson, Kennebec",
+      art: "https://i.scdn.co/image/ab67616d0000b27368a6ad6e704c4df456045555",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=10279",
+      color: ["#202F59", "#D1587E"],
+      weather: [weatherConditions.CLOUDS, weatherConditions.DRIZZLE]
+    },
   ];
 }
-
-
-
-
