@@ -57,6 +57,8 @@ const Home = () => {
           })
       }
       getLatLongData()
+    } else {
+      getNewYorkWeather();
     }
   }, [latitude, longitude])
 
@@ -88,20 +90,24 @@ const Home = () => {
     if (zipCode.length !== 5 || isNaN(zipCode)) {
       alert("Please input a valid zip code");
     } else {
-      const ZIP_CODE_URL = `${WEATHER_API_BASE_URL}zip=${zipCode},us&appid=06d2f8b149857e20bd8f265ca5d2e879`;
-      await axios.get(ZIP_CODE_URL)
-        .then(res => {
-          setWeatherData(res.data);
-          setCondition(res.data.weather[0].main);
-          setSongOptions(songs.filter(song => {
-            return song.weather.includes(condition);
-          }))
-        })
-        .catch(err => {
-          console.log(err);
-          alert("Please input a valid zip code");
-        });
+      getNewYorkWeather()
     }
+  }
+
+  async function getNewYorkWeather() {
+    const ZIP_CODE_URL = `${WEATHER_API_BASE_URL}zip=${zipCode},us&appid=06d2f8b149857e20bd8f265ca5d2e879`;
+    await axios.get(ZIP_CODE_URL)
+      .then(res => {
+        setWeatherData(res.data);
+        setCondition(res.data.weather[0].main);
+        setSongOptions(songs.filter(song => {
+          return song.weather.includes(condition);
+        }))
+      })
+      .catch(err => {
+        console.log(err);
+        alert("Please input a valid zip code");
+      });
   }
 
   const updateSearchInput = (event) => {
