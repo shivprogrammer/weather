@@ -8,6 +8,7 @@ import Song from "./Song";
 import { weatherConditions } from "../utils/weatherConditions"
 
 const Player = ({ songOptions, condition }) => {
+  console.log(songOptions)
   const audioRef = useRef(null);
   const [backgroundWeather, setBackgroundWeather] = useState(null);
   const [currentSong, setCurrentSong] = useState(songOptions[0]);

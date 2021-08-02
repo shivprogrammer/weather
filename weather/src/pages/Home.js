@@ -14,7 +14,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import { StyledSearch } from "../styledComponents/StyledSearch";
 
 const Home = () => {
-  const songs = shuffle(songData());
+  const [songs, setSongs] = useState(songData());
+  // const songs = shuffle(songData());
   const [isLoading, setIsLoading] = useState(true);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
@@ -34,6 +35,10 @@ const Home = () => {
     }
     return arr;
   }
+
+  useEffect(() => {
+    setSongs(shuffle(songs));
+  }, [])
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((res) => {
@@ -67,10 +72,17 @@ const Home = () => {
   }, [weatherData])
 
   useEffect(() => {
+    console.log(condition);
+  }, [condition])
+
+  useEffect(() => {
     if (condition) {
       setSongOptions(songs.filter(song => {
         return song.weather.includes(condition);
       }))
+      if (songOptions.length === 0) {
+        setSongOptions(songs);
+      }
       if (weatherData && weatherData.name && weatherData.main && weatherData.weather) {
         setIsLoading(false);
       }
@@ -129,7 +141,7 @@ const Home = () => {
               condition={condition}
               iconData={weatherData.weather[0].icon}
             />
-            <Player songOptions={songOptions} condition={condition} />
+            {songOptions.length > 0 && <Player songOptions={songOptions} condition={condition} />}
           </motion.div>
         )}
     </>

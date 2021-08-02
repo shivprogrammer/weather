@@ -5,5 +5,14 @@ export const weatherConditions = {
   SNOW: "Snow",
   ATMOSPHERE: "Atmosphere",
   CLEAR: "Clear",
-  CLOUDS: "Clouds"
+  CLOUDS: "Clouds",
+  MIST: "Mist",
+  SMOKE: "Smoke",
+  HAZE: "Haze",
+  DUST: "Dust",
+  FOG: "Fog",
+  SAND: "Sand",
+  ASH: "Ash",
+  SQUALL: "Squall",
+  TORNADO: "Tornado"
 };
