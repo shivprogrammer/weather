@@ -14,6 +14,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { StyledSearch } from "../styledComponents/StyledSearch";
 
 const Home = () => {
+  const songs = shuffle(songData());
   const [isLoading, setIsLoading] = useState(true);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
@@ -21,6 +22,18 @@ const Home = () => {
   const [condition, setCondition] = useState(null);
   const [songOptions, setSongOptions] = useState([]);
   const [zipCode, setZipCode] = useState("10036");
+
+  function shuffle(arr) {
+    let currIndex = arr.length;
+    let randIndex;
+    while (currIndex !== 0) {
+      randIndex = Math.floor(Math.random() * currIndex);
+      currIndex--;
+      [arr[currIndex], arr[randIndex]] = [
+        arr[randIndex], arr[currIndex]];
+    }
+    return arr;
+  }
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((res) => {
@@ -55,7 +68,7 @@ const Home = () => {
 
   useEffect(() => {
     if (condition) {
-      setSongOptions(songData().filter(song => {
+      setSongOptions(songs.filter(song => {
         return song.weather.includes(condition);
       }))
       if (weatherData && weatherData.name && weatherData.main && weatherData.weather) {
@@ -74,7 +87,7 @@ const Home = () => {
         .then(res => {
           setWeatherData(res.data);
           setCondition(res.data.weather[0].main);
-          setSongOptions(songData().filter(song => {
+          setSongOptions(songs.filter(song => {
             return song.weather.includes(condition);
           }))
         })
