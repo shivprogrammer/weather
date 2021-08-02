@@ -111,5 +111,45 @@ export function songData() {
       color: ["#6077EE", "#323F9E"],
       weather: [weatherConditions.RAIN, weatherConditions.THUNDERSTORM]
     },
+    {
+      id: uuidv4(),
+      name: "Lax Incense",
+      artist: "Mama Aiuto, Daphné",
+      art: "https://chillhop.com/wp-content/uploads/2021/01/6b1bb8736ee3e972747bc11f312e31cf7f5823e4-1024x1024.jpg",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=12125",
+      color: ["#772927", "#AF5224"],
+      weather: [weatherConditions.CLEAR]
+    },
+    {
+      id: uuidv4(),
+      name: "Flip Flop Vibe",
+      artist: "The BREED",
+      art: "https://i.scdn.co/image/ab67616d0000b273be3d11ca6409985db8ba88ca",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=16187",
+      color: ["#FE9C5C", "#FEB38A"],
+      weather: [weatherConditions.CLEAR]
+    },
+    {
+      id: uuidv4(),
+      name: "Sodium",
+      artist: "Philanthrope, Tesk",
+      art: "https://chillhop.com/wp-content/uploads/2020/07/f9ad13db0a7c6e6a086a3a17a15ff92cd69b2d7e-1024x1024.jpg",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=9149",
+      color: ["#EBEBEB", "#2D2D2D"],
+      weather: [weatherConditions.CLOUDS, weatherConditions.DRIZZLE, weatherConditions.RAIN]
+    },
+    {
+      id: uuidv4(),
+      name: "Double Cheese With Fries",
+      artist: "Flitz&Suppe, Omaure",
+      art: "https://i.scdn.co/image/ab67616d0000b273ae936137924268701ee507b4",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=1689",
+      color: ["#AED1D1", "#6E8281"],
+      weather: [weatherConditions.CLOUDS, weatherConditions.DRIZZLE, weatherConditions.CLEAR]
+    },
   ];
 }
+
+
+
+
