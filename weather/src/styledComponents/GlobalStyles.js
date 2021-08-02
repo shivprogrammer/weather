@@ -39,12 +39,38 @@ export const GlobalStyles = createGlobalStyle`
       transform: translateY(0);
     }
   }
-  @keyframes heavy-rain {
-    from {
-      transform: translateY(-15000%);
+  @keyframes snow {
+    0% {
+      transform: translateY(-10000%) translateX(5000%) rotateY(0deg);
     }
-    to {
-      transform: translateY(0);
+    25% {
+      transform: translateX(0%);
+    }
+    50% {
+      transform: translateX(1000%) rotateY(0deg);
+    }
+    75% {
+      transform: translateX(2500%) rotateY(360deg);
+    }
+    100% {
+      transform: translateY(0) translateX(0) rotateY(360deg);
+    }
+  }
+  @keyframes snow-right {
+    0% {
+      transform: translateY(-10000%) translateX(-5000%) rotateY(0deg);
+    }
+    25% {
+      transform: translateX(0%);
+    }
+    50% {
+      transform: translateX(-1000%) rotateY(0deg);
+    }
+    75% {
+      transform: translateX(-2500%) rotateY(360deg);
+    }
+    100% {
+      transform: translateY(0) translateX(0) rotateY(360deg);
     }
   }
   .storm {
@@ -60,7 +86,6 @@ export const GlobalStyles = createGlobalStyle`
     animation: flash 5s linear infinite;
     pointer-events: none;
   }
-
   @keyframes flash {
     0%, 95%, 98% {
       background-color: transparent

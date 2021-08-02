@@ -9,7 +9,7 @@ import { weatherConditions } from "../utils/weatherConditions"
 
 const Player = ({ songOptions, condition }) => {
   const audioRef = useRef(null);
-  const [rain, setRain] = useState(null);
+  const [backgroundWeather, setBackgroundWeather] = useState(null);
   const [currentSong, setCurrentSong] = useState(songOptions[0]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [songTime, setSongTime] = useState({
@@ -77,39 +77,51 @@ const Player = ({ songOptions, condition }) => {
 
   const backgroundDrizzle = () => {
     let numDrops = 0;
-    let rainDrops = "";
+    let rain = "";
     while (numDrops < 700) {
       const randFifteen = Math.floor(Math.random() * 14 + 1);
       const rand = Math.random();
       numDrops += randFifteen;
-      rainDrops += '<div><img src="https://shivrandombucket.s3.amazonaws.com/raindrop.png" style="margin-left: '+ numDrops +'%; width: '+ randFifteen +'px; animation: rain 2s ease-in infinite '+ rand +'s;" alt="Raindrop" /></div>';
+      rain += '<div><img src="https://shivrandombucket.s3.amazonaws.com/raindrop.png" style="margin-left: '+ numDrops +'%; width: '+ randFifteen +'px; animation: rain 2s ease-in infinite '+ rand +'s;" alt="Raindrop" /></div>';
     }
-    setRain(rainDrops);
+    setBackgroundWeather(rain);
   }
 
   const backgroundRain = () => {
     let numDrops = 0;
-    let rainDrops = "";
+    let rain = "";
     while (numDrops < 700) {
       const randFifteen = Math.floor(Math.random() * 14 + 1);
       const randThree = Math.floor(Math.random() * 2 + 1);
       const rand = Math.random();
       numDrops += randThree;
-      rainDrops += '<div><img src="https://shivrandombucket.s3.amazonaws.com/raindrop.png" style="margin-left: '+ numDrops +'%; width: '+ randFifteen +'px; animation: rain 1.5s ease-in infinite '+ rand +'s;" alt="Raindrop" /></div>';
+      rain += '<div><img src="https://shivrandombucket.s3.amazonaws.com/raindrop.png" style="margin-left: '+ numDrops +'%; width: '+ randFifteen +'px; animation: rain 1.5s ease-in infinite '+ rand +'s;" alt="Raindrop" /></div>';
     }
-    setRain(rainDrops);
+    setBackgroundWeather(rain);
   }
 
   const backgroundHeavyRain = () => {
     let numDrops = 0;
-    let rainDrops = "";
+    let backgroundWeatherDrops = "";
     while (numDrops < 1000) {
       const randFifteen = Math.floor(Math.random() * 14 + 1);
       const rand = Math.random();
       numDrops++;
-      rainDrops += '<div><img src="https://shivrandombucket.s3.amazonaws.com/raindrop.png" style="margin-left: '+ numDrops +'%; width: '+ randFifteen +'px; animation: heavy-rain 0.5s ease-in infinite '+ rand +'s;" alt="Raindrop" /></div>';
+      backgroundWeatherDrops += '<div><img src="https://shivrandombucket.s3.amazonaws.com/raindrop.png" style="margin-left: '+ numDrops +'%; width: '+ randFifteen +'px; animation: rain 0.5s ease-in infinite '+ rand +'s;" alt="Snowflake" /></div>';
     }
-    setRain(rainDrops);
+    setBackgroundWeather(backgroundWeatherDrops);
+  }
+
+  const backgroundSnow = () => {
+    let numFlakes = 0;
+    let snow = "";
+    while (numFlakes < 300) {
+      const randFifteen = Math.floor(Math.random() * 14 + 1);
+      const rand = Math.random();
+      numFlakes++;
+      snow += '<div><img src="https://www.pngkit.com/png/full/70-708129_snowflakes-png-file-snowflake-png.png" style="margin-left: '+ numFlakes +'%; width: '+ randFifteen +'px; animation: snow 30s ease-in-out infinite '+ rand +'s;" alt="Snowflake" /></div>';
+    }
+    setBackgroundWeather(snow);
   }
 
   useEffect(() => {
@@ -119,6 +131,8 @@ const Player = ({ songOptions, condition }) => {
       backgroundHeavyRain();
     } else if (condition === weatherConditions.DRIZZLE) {
       backgroundDrizzle();
+    } else if (condition === weatherConditions.SNOW) {
+      backgroundSnow();
     }
   }, [condition])
 
@@ -152,7 +166,7 @@ const Player = ({ songOptions, condition }) => {
           onLoadedMetadata={timeHandler}>
         </audio>
       </PlayerContainer>
-      {(condition === weatherConditions.RAIN || condition === weatherConditions.DRIZZLE || condition === weatherConditions.THUNDERSTORM) && <div dangerouslySetInnerHTML={{__html: rain}} />}
+      {(condition === weatherConditions.RAIN || condition === weatherConditions.DRIZZLE || condition === weatherConditions.THUNDERSTORM || condition === weatherConditions.SNOW) && <div dangerouslySetInnerHTML={{__html: backgroundWeather}} />}
       {condition === weatherConditions.THUNDERSTORM && <div className="storm" />}
     </>
   )
