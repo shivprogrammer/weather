@@ -37,7 +37,9 @@ const Player = ({ songOptions, condition }) => {
     if (percentage === 100) {
       const newIndex = (songOptions.findIndex(song => song.id === currentSong.id) + 1) % songOptions.length;
       setCurrentSong(songOptions[newIndex]);
-      setIsPlaying(false);
+      setTimeout(() => {
+        playSong();
+      }, 1000);
     }
   }
 
