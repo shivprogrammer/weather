@@ -71,14 +71,17 @@ const Home = () => {
       setSongOptions(songs.filter(song => {
         return song.weather.includes(condition);
       }))
-      if (songOptions.length === 0) {
-        setSongOptions(songs);
-      }
       if (weatherData && weatherData.name && weatherData.main && weatherData.weather) {
         setIsLoading(false);
       }
     }
   }, [weatherData, condition])
+
+  useEffect(() => {
+    if (!isLoading && songOptions.length === 0) {
+      setSongOptions(songs);
+    }
+  }, [isLoading, songOptions])
 
   const submitSearchZipCode = async (event) => {
     event.preventDefault();
