@@ -168,8 +168,8 @@ const Player = ({ songOptions, condition }) => {
           onLoadedMetadata={timeHandler}>
         </audio>
       </PlayerContainer>
-      {/*{(condition === weatherConditions.RAIN || condition === weatherConditions.DRIZZLE || condition === weatherConditions.THUNDERSTORM || condition === weatherConditions.SNOW) && <div dangerouslySetInnerHTML={{__html: backgroundWeather}} />}*/}
-      {/*{condition === weatherConditions.THUNDERSTORM && <div className="storm" />}*/}
+      {(condition === weatherConditions.RAIN || condition === weatherConditions.DRIZZLE || condition === weatherConditions.THUNDERSTORM || condition === weatherConditions.SNOW) && <div dangerouslySetInnerHTML={{__html: backgroundWeather}} />}
+      {condition === weatherConditions.THUNDERSTORM && <div className="storm" />}
     </>
   )
 }
