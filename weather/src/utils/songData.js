@@ -86,17 +86,30 @@ export function songData() {
     },
     {
       id: uuidv4(),
-      name: "Lax Incense",
-      artist: "Mama Aiuto, Daphné",
-      art: "https://chillhop.com/wp-content/uploads/2021/01/6b1bb8736ee3e972747bc11f312e31cf7f5823e4-1024x1024.jpg",
-      audio: "https://chillhop.com/wp-includes/js/wp-embed.min.js?ver=5.7.2",
-      color: ["#772927", "#AF5224"],
+      name: "burn my mind",
+      artist: "Tesk",
+      art: "https://chillhop.com/wp-content/uploads/2020/10/efaa848553d09b4d9fc0752844456e41b34de276-1024x1024.jpg",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=8137",
+      color: ["#87D6F4", "#6A58B2"],
+      weather: [weatherConditions.CLOUDS, weatherConditions.DRIZZLE]
+    },
+    {
+      id: uuidv4(),
+      name: "Trenches",
+      artist: "Philanthrope, Sleepy Fish",
+      art: "https://chillhop.com/wp-content/uploads/2020/10/efaa848553d09b4d9fc0752844456e41b34de276-1024x1024.jpg",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=10247",
+      color: ["#6A58B2", "#87D6F4"],
       weather: [weatherConditions.CLEAR]
+    },
+    {
+      id: uuidv4(),
+      name: "Calm",
+      artist: "ØDYSSEE, Florent Garcia",
+      art: "https://chillhop.com/wp-content/uploads/2020/06/d9d8ae69141cb7838e3c53bbf393c6218285e384-1024x1024.jpg",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=9285",
+      color: ["#6077EE", "#323F9E"],
+      weather: [weatherConditions.RAIN, weatherConditions.THUNDERSTORM]
     },
   ];
 }
-
-
-
-
-
