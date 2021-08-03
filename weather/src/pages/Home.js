@@ -7,14 +7,16 @@ import { pageAnimation } from "../utils/animations";
 import WeatherInfo from "../components/WeatherInfo";
 import ClipLoader from "react-spinners/ClipLoader";
 import Player from "../components/Player";
-import { songData } from "../utils/songData";
 import Input from "@material-ui/core/Input"
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import { StyledSearch } from "../styledComponents/StyledSearch";
+import { useDispatch, useSelector } from "react-redux";
+import { loadSongs } from "../actions/songsAction";
 
 const Home = () => {
-  const songs = shuffle(songData());
+  const dispatch = useDispatch();
+  const { allSongs } = useSelector(state => state.songs);
   const [isLoading, setIsLoading] = useState(true);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
@@ -23,17 +25,9 @@ const Home = () => {
   const [songOptions, setSongOptions] = useState([]);
   const [zipCode, setZipCode] = useState("10036");
 
-  function shuffle(arr) {
-    let currIndex = arr.length;
-    let randIndex;
-    while (currIndex !== 0) {
-      randIndex = Math.floor(Math.random() * currIndex);
-      currIndex--;
-      [arr[currIndex], arr[randIndex]] = [
-        arr[randIndex], arr[currIndex]];
-    }
-    return arr;
-  }
+  useEffect(() => {
+    dispatch(loadSongs());
+  }, [])
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((res) => {
@@ -70,7 +64,7 @@ const Home = () => {
 
   useEffect(() => {
     if (condition) {
-      setSongOptions(songs.filter(song => {
+      setSongOptions(allSongs.filter(song => {
         return song.weather.includes(condition);
       }))
       if (weatherData && weatherData.name && weatherData.main && weatherData.weather) {
@@ -81,7 +75,7 @@ const Home = () => {
 
   useEffect(() => {
     if (!isLoading && songOptions.length === 0) {
-      setSongOptions(songs);
+      setSongOptions(allSongs);
     }
   }, [isLoading, songOptions])
 
@@ -100,7 +94,7 @@ const Home = () => {
       .then(res => {
         setWeatherData(res.data);
         setCondition(res.data.weather[0].main);
-        setSongOptions(songs.filter(song => {
+        setSongOptions(allSongs.filter(song => {
           return song.weather.includes(condition);
         }))
       })

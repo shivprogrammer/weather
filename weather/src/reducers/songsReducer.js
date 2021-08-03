@@ -5,7 +5,7 @@ const initialState = {
 const songsReducer = (state=initialState, action) => {
   switch (action.type) {
     case "FETCH_SONGS":
-      return {...state}
+      return {...state, allSongs: action.payload}
     default:
       return {...state}
   }
